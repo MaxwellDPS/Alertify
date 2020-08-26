@@ -11,7 +11,7 @@ import com.github.gotify.api.CertUtils;
 import com.github.gotify.api.ClientFactory;
 import com.github.gotify.client.api.ApplicationApi;
 import com.github.gotify.log.Log;
-import com.github.gotify.messages.provider.MessageImageCombiner;
+import com.github.gotify.init.messages.provider.MessageImageCombiner;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 import java.io.File;

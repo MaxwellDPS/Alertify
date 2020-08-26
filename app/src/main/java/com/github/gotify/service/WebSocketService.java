@@ -28,12 +28,14 @@ import com.github.gotify.client.api.MessageApi;
 import com.github.gotify.client.model.Message;
 import com.github.gotify.log.Log;
 import com.github.gotify.log.UncaughtExceptionHandler;
-import com.github.gotify.messages.Extras;
-import com.github.gotify.messages.MessagesActivity;
+import com.github.gotify.init.messages.Extras;
+import com.github.gotify.init.messages.MessagesActivity;
+import com.github.gotify.notifications.panik.CBUtils.SmsCbConstants;
 import com.github.gotify.picasso.PicassoHandler;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
+import com.github.gotify.notifications.panik.CriticalNotify;
 
 public class WebSocketService extends Service {
 
@@ -265,35 +267,102 @@ public class WebSocketService extends Service {
             intent = new Intent(this, MessagesActivity.class);
         }
 
-        PendingIntent contentIntent =
-                PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        if (priority <= 89) {
+            PendingIntent contentIntent =
+                    PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Builder b =
-                new NotificationCompat.Builder(
-                        this, NotificationSupport.convertPriorityToChannel(priority));
+            NotificationCompat.Builder b =
+                    new NotificationCompat.Builder(
+                            this, NotificationSupport.convertPriorityToChannel(priority));
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            showNotificationGroup(priority);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                showNotificationGroup(priority);
+            }
+
+            b.setAutoCancel(true)
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setWhen(System.currentTimeMillis())
+                    .setSmallIcon(R.drawable.ic_gotify)
+                    .setLargeIcon(picassoHandler.getIcon(appid))
+                    .setTicker(getString(R.string.app_name) + " - " + title)
+                    .setGroup(NotificationSupport.Group.MESSAGES)
+                    .setContentTitle(title)
+                    .setContentText(message)
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
+                    .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND)
+                    .setLights(Color.CYAN, 1000, 5000)
+                    .setColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
+                    .setContentIntent(contentIntent);
+
+            NotificationManager notificationManager =
+                    (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(Utils.longToInt(id), b.build());
+        }else if (priority <= 99) {
+            int messageType = 0;
+            switch(title.toLowerCase()){
+                case "president":
+                    messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_PRESIDENTIAL_LEVEL;
+                    break;
+                case "extreme":
+                    messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_EXTREME_IMMEDIATE_OBSERVED;
+                    break;
+                case "severe":
+                    messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_SEVERE_EXPECTED_LIKELY;
+                    break;
+                case "amber":
+                    messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_CHILD_ABDUCTION_EMERGENCY;
+                    break;
+                case "public":
+                    messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_PUBLIC_SAFETY;
+                    break;
+                case "rmt":
+                    messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_REQUIRED_MONTHLY_TEST;
+                    break;
+                case "statetest":
+                    messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_STATE_LOCAL_TEST;
+                    break;
+                case "broadcast":
+                    messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_OPERATOR_DEFINED_USE;
+                    break;
+                default:
+                    messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_Critical;
+            }
+
+            CriticalNotify.AlertCritical(messageType, message,this, true);
+        }else{
+                int messageType = 0;
+                switch(title.toLowerCase()){
+                    case "president":
+                        messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_PRESIDENTIAL_LEVEL;
+                        break;
+                    case "extreme":
+                        messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_EXTREME_IMMEDIATE_OBSERVED;
+                        break;
+                    case "severe":
+                        messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_SEVERE_EXPECTED_LIKELY;
+                        break;
+                    case "amber":
+                        messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_CHILD_ABDUCTION_EMERGENCY;
+                        break;
+                    case "public":
+                        messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_PUBLIC_SAFETY;
+                        break;
+                    case "rmt":
+                        messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_REQUIRED_MONTHLY_TEST;
+                        break;
+                    case "statetest":
+                        messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_STATE_LOCAL_TEST;
+                        break;
+                    case "broadcast":
+                        messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_OPERATOR_DEFINED_USE;
+                        break;
+                    default:
+                        messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_Critical;
+                }
+
+                CriticalNotify.AlertCritical(messageType, message,this, false);
         }
 
-        b.setAutoCancel(true)
-                .setDefaults(Notification.DEFAULT_ALL)
-                .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.ic_gotify)
-                .setLargeIcon(picassoHandler.getIcon(appid))
-                .setTicker(getString(R.string.app_name) + " - " + title)
-                .setGroup(NotificationSupport.Group.MESSAGES)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
-                .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND)
-                .setLights(Color.CYAN, 1000, 5000)
-                .setColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
-                .setContentIntent(contentIntent);
-
-        NotificationManager notificationManager =
-                (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(Utils.longToInt(id), b.build());
     }
 
     @RequiresApi(Build.VERSION_CODES.N)

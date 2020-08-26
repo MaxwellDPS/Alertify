@@ -24,7 +24,7 @@ import com.github.gotify.client.api.MessageApi;
 import com.github.gotify.client.model.Application;
 import com.github.gotify.client.model.Message;
 import com.github.gotify.log.Log;
-import com.github.gotify.messages.provider.ApplicationHolder;
+import com.github.gotify.init.messages.provider.ApplicationHolder;
 import java.util.ArrayList;
 import java.util.List;
 

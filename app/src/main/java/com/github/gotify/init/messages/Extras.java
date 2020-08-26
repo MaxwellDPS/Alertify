@@ -1,4 +1,4 @@
-package com.github.gotify.messages;
+package com.github.gotify.init.messages;
 
 import com.github.gotify.client.model.Message;
 import java.util.Map;

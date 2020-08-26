@@ -45,6 +45,9 @@ public class SettingsActivity extends AppCompatActivity
             ThemeHelper.setTheme(
                     this, sharedPreferences.getString(key, getString(R.string.theme_default)));
         }
+        if (getString(R.string.MuteCritical).equals(key)) {
+            ThemeHelper.setTheme(this, sharedPreferences.getString(key, getString(R.string.unMuted)));
+        }
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {

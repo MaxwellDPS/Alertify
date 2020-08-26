@@ -1,4 +1,4 @@
-package com.github.gotify.messages;
+package com.github.gotify.init.messages;
 
 import android.content.Context;
 import android.text.util.Linkify;
@@ -16,7 +16,7 @@ import com.github.gotify.R;
 import com.github.gotify.Settings;
 import com.github.gotify.Utils;
 import com.github.gotify.client.model.Message;
-import com.github.gotify.messages.provider.MessageWithImage;
+import com.github.gotify.init.messages.provider.MessageWithImage;
 import com.squareup.picasso.Picasso;
 import io.noties.markwon.Markwon;
 import io.noties.markwon.core.CorePlugin;

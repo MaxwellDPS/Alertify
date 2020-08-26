@@ -1,4 +1,4 @@
-package com.github.gotify.messages;
+package com.github.gotify.init.messages;
 
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
@@ -54,11 +54,11 @@ import com.github.gotify.init.InitializationActivity;
 import com.github.gotify.log.Log;
 import com.github.gotify.log.LogsActivity;
 import com.github.gotify.login.LoginActivity;
-import com.github.gotify.messages.provider.ApplicationHolder;
-import com.github.gotify.messages.provider.MessageDeletion;
-import com.github.gotify.messages.provider.MessageFacade;
-import com.github.gotify.messages.provider.MessageState;
-import com.github.gotify.messages.provider.MessageWithImage;
+import com.github.gotify.init.messages.provider.ApplicationHolder;
+import com.github.gotify.init.messages.provider.MessageDeletion;
+import com.github.gotify.init.messages.provider.MessageFacade;
+import com.github.gotify.init.messages.provider.MessageState;
+import com.github.gotify.init.messages.provider.MessageWithImage;
 import com.github.gotify.picasso.PicassoHandler;
 import com.github.gotify.service.WebSocketService;
 import com.github.gotify.settings.SettingsActivity;

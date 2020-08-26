@@ -1,4 +1,4 @@
-package com.github.gotify.messages.provider;
+package com.github.gotify.init.messages.provider;
 
 import android.app.Activity;
 import com.github.gotify.Utils;

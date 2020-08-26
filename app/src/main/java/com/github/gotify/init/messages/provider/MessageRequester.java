@@ -1,4 +1,4 @@
-package com.github.gotify.messages.provider;
+package com.github.gotify.init.messages.provider;
 
 import com.github.gotify.api.Api;
 import com.github.gotify.api.ApiException;

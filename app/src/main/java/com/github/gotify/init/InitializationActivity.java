@@ -20,7 +20,7 @@ import com.github.gotify.client.model.VersionInfo;
 import com.github.gotify.log.Log;
 import com.github.gotify.log.UncaughtExceptionHandler;
 import com.github.gotify.login.LoginActivity;
-import com.github.gotify.messages.MessagesActivity;
+import com.github.gotify.init.messages.MessagesActivity;
 import com.github.gotify.service.WebSocketService;
 import com.github.gotify.settings.ThemeHelper;
 

@@ -1,4 +1,4 @@
-package com.github.gotify.messages.provider;
+package com.github.gotify.init.messages.provider;
 
 import com.github.gotify.client.api.MessageApi;
 import com.github.gotify.client.model.Message;
