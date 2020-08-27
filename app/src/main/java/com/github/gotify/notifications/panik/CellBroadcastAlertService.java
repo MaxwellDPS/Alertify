@@ -179,14 +179,6 @@ public class CellBroadcastAlertService extends Service {
     static final byte[] etwsMessageNormal = ETWS.hexStringToBytes("000011001101" + "EA305BAE57CE770C531790E85C716CBF3044573065B930675730" + "9707767A751F30025F37304463FA308C306B5099304830664E0B30553044FF086C178C615E81FF09" +  "0000000000000000000000000000");
     static final byte[] etwsMessageCancel = ETWS.hexStringToBytes("000011001101" + "EA305148307B3069002800310030003A0035" + "00320029306E7DCA602557309707901F5831309253D66D883057307E3059FF086C178C615E81FF09" +   "00000000000000000000000000000000000000000000");
     static final byte[] etwsMessageTest = ETWS.hexStringToBytes("000011031101" + "EA305BAE57CE770C531790E85C716CBF3044" +    "573065B9306757309707300263FA308C306B5099304830664E0B30553044FF086C178C615E81FF09" +   "00000000000000000000000000000000000000000000");
-    static final String PRES_ALERT = "THE PRESIDENT HAS ISSUED AN EMERGENCY ALERT. CHECK LOCAL MEDIA FOR MORE DETAILS";
-    static final String EXTREME_ALERT = "FLASH FLOOD WARNING FOR SOUTH COCONINO COUNTY - NORTH CENTRAL ARIZONA UNTIL 415 PM MST";
-    static final String SEVERE_ALERT = "SEVERE WEATHER WARNING FOR SOMERSET COUNTY - NEW JERSEY UNTIL 415 PM MST";
-    static final String AMBER_ALERT = "AMBER ALERT:Mountain View,CA VEH'07 Blue Honda Civic CA LIC 5ABC123. Check www.amberalert.gov/active.htm, call 858-123-4567, or email mberalert@mountainview.ca.gov for more information.";
-    static final String MONTHLY_TEST_ALERT = "This is a test of the emergency alert system. This is only a test. Call (123)456-7890.";
-    static final String PUBLIC_SAFETY_MESSAGE = "This is a public safety message.";
-    static final String STATE_LOCAL_ALERT = "This is a state/local test message.";
-
 
     /**
      * Display an alert message for emergency alerts.
@@ -339,17 +331,9 @@ public class CellBroadcastAlertService extends Service {
      * with the same ID is already registered, NotificationManager will ignore this call.
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
-    static void createNotificationChannels(Context context) {
+    public static void createNotificationChannels(Context context) {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.createNotificationChannel(new NotificationChannel(NOTIFICATION_CHANNEL_EMERGENCY_ALERTS,   context.getString(R.string.notification_channel_emergency_alerts), NotificationManager.IMPORTANCE_LOW));
-
-        final NotificationChannel nonEmergency = new NotificationChannel(NOTIFICATION_CHANNEL_NON_EMERGENCY_ALERTS, context.getString(R.string.notification_channel_broadcast_messages), NotificationManager.IMPORTANCE_DEFAULT);
-        nonEmergency.enableVibration(true);
-        notificationManager.createNotificationChannel(nonEmergency);
-
-        final NotificationChannel emergencyAlertInVoiceCall = new NotificationChannel(NOTIFICATION_CHANNEL_EMERGENCY_ALERTS_IN_VOICECALL, context.getString(R.string.notification_channel_broadcast_messages_in_voicecall), NotificationManager.IMPORTANCE_HIGH);
-        emergencyAlertInVoiceCall.enableVibration(true);
-        notificationManager.createNotificationChannel(emergencyAlertInVoiceCall);
+        notificationManager.createNotificationChannel(new NotificationChannel(NOTIFICATION_CHANNEL_EMERGENCY_ALERTS,   context.getString(R.string.notification_channel_emergency_alerts), NotificationManager.IMPORTANCE_HIGH));
     }
 
     private static Intent createDisplayMessageIntent(Context context, Class intentClass, ArrayList<SmsCbMessage> messageList) {

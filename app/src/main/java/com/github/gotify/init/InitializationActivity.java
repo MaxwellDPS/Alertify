@@ -23,6 +23,7 @@ import com.github.gotify.login.LoginActivity;
 import com.github.gotify.init.messages.MessagesActivity;
 import com.github.gotify.service.WebSocketService;
 import com.github.gotify.settings.ThemeHelper;
+import com.github.gotify.notifications.panik.CellBroadcastAlertService;
 
 import static com.github.gotify.api.Callback.callInUI;
 
@@ -45,6 +46,7 @@ public class InitializationActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationSupport.createChannels(
                     (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE));
+            CellBroadcastAlertService.createNotificationChannels(this);
         }
 
         UncaughtExceptionHandler.registerCurrentThread();
