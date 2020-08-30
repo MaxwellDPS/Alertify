@@ -1,8 +1,95 @@
-# Gotify Android [![Build Status][travis-badge]][travis] [![FOSSA Status][fossa-badge]][fossa] [![latest release version][release-badge]][release] [![F-Droid][fdroid-badge]][fdroid]
+# Alertify Android 
 
+## This fork of Gotify Android adds Spoofing of WEA Messages at the API 29 UI level
+
+## Gotify Android 
 <img align="right" src="app.gif" width="250" />
 
 Gotify Android connects to [gotify/server](https://github.com/gotify/server) and shows push notifications on new messages.
+
+## Sening an spoofed alert
+
+### Priority
+- \>89 - WEA dialog without Audio
+- \>99 - WEA dialog with Audio *Note it uses the Alarm channel and sets to full it will override Do not disturb*
+
+### Title options
+
+The title field i9s used to send the message type, Types are as follows:
+
+*Note, if title is absent or dosent match it defaults to "Critical Alert"*
+*Title is case insesitive*
+
+#### CMAS Alerts
+- President     
+    > CMAS Presidental Message    
+
+    ![image.png](./image.png)      
+
+- Extreme
+    > CMAS Extreme Message
+
+    ![image_1.png](./image_1.png)
+
+- Severe
+    > CMAS Severe Message
+
+    ![image_2.png](./image_2.png)
+
+- Amber
+    > CMAS Amber Alert / Child Abduction Message
+
+    ![image_3.png](./image_3.png)
+
+- Public
+    > CMAS Public Safety Message
+
+    ![image_5.png](./image_5.png)
+
+- RMT
+    > CMAS Required Monthly Test Message
+
+    ![image_4.png](./image_4.png)
+
+- StateTest
+    > CMAS State/Local Test Message 
+
+    ![image_6.png](./image_6.png)
+
+- Broadcast
+    > Emergency Broadcast Operator Message
+
+    ![image_7.png](./image_7.png)
+
+#### ETWS Alerts
+- Tsunami
+     > ETWS Tsunami Message
+
+     ![image_10.png](./image_10.png)
+- Earthquake
+     > ETWS Earthquake Message
+
+     ![image_8.png](./image_8.png)
+     
+- ET
+     > ETWS Earthquake & Tsunami Message
+
+     ![image_11.png](./image_11.png)
+
+- ETWS
+    > ETWS Other Message
+
+    ![image_12.png](./image_12.png)
+
+- ETWSTest
+    > ETWS Test Message
+
+    ![image_13.png](./image_13.png)
+
+
+                      
+                     
+
 
 ## Features
 
@@ -11,13 +98,7 @@ Gotify Android connects to [gotify/server](https://github.com/gotify/server) and
 
 ## Installation
 
-Download the apk or get the app via F-Droid or Google Play.
-
-[<img src="https://play.google.com/intl/en_gb/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="150" />][playstore]
-[<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" width="150"/>][fdroid]
-[<img src="download-badge.png" alt="Get it on F-Droid" width="150"/>][release]
-
-Google Play and the Google Play logo are trademarks of Google LLC.
+Download the apk or build via Android studio.
 
 ### Disable battery optimization
 
@@ -72,13 +153,3 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
- [travis-badge]: https://travis-ci.org/gotify/android.svg?branch=master
- [travis]: https://travis-ci.org/gotify/android
- [playstore]: https://play.google.com/store/apps/details?id=com.github.gotify
- [fdroid-badge]: https://img.shields.io/f-droid/v/com.github.gotify.svg
- [fdroid]: https://f-droid.org/de/packages/com.github.gotify/
- [fossa-badge]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgotify%2Fandroid.svg?type=shield
- [fossa]: https://app.fossa.io/projects/git%2Bgithub.com%2Fgotify%2Fandroid
- [release-badge]: https://img.shields.io/github/release/gotify/android.svg
- [release]: https://github.com/gotify/android/releases/latest
- 
