@@ -1,12 +1,10 @@
 package com.github.gotify.notifications.panik;
 
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
 import com.github.gotify.notifications.panik.CBUtils.SmsCbCmasInfo;
-import com.github.gotify.notifications.panik.CBUtils.SmsCbConstants;
+import com.github.gotify.notifications.panik.CBUtils.SmsCbEtwsInfo;
 import com.github.gotify.notifications.panik.CBUtils.SmsCbLocation;
 import com.github.gotify.notifications.panik.CBUtils.SmsCbMessage;
 
@@ -35,15 +33,34 @@ public class CriticalNotify {
         return msg;
     }
 
-    public static void AlertCritical(int Priority, String Body, Context context, Boolean mute){
-        onFire(new CellBroadcastAlertService(), context,  Priority, Body, SmsCbMessage.MESSAGE_PRIORITY_EMERGENCY, mute);
+    public static SmsCbMessage createETWSMessage(int serviceCategory, String body, int priority) {
+        int messageClass = CellBroadcastAlertService.getETWSMessageClass(serviceCategory);
+        SmsCbEtwsInfo etwsInfo =
+                new SmsCbEtwsInfo(
+                        messageClass,
+                        true,
+                        true,
+                        true,
+                        null
+                );
+        SmsCbMessage msg = new SmsCbMessage(SmsCbMessage.MESSAGE_FORMAT_3GPP,0, getSerialNumber(), new SmsCbLocation("1234"), serviceCategory, "en", body, priority, etwsInfo, null, 0,0);
+        return msg;
+
     }
 
-    public static void onFire(CellBroadcastAlertService CBS, Context context,  int serviceCategory,  String body, int priority, Boolean mute) {
+    public static void AlertCritical(int Priority, String Body, Context context, Boolean mute, boolean isCMAS){
+        onFire(new CellBroadcastAlertService(), context,  Priority, Body, SmsCbMessage.MESSAGE_PRIORITY_EMERGENCY, mute,isCMAS );
+    }
+
+    public static void onFire(CellBroadcastAlertService CBS, Context context,  int serviceCategory,  String body, int priority, Boolean mute, boolean isCMAS) {
         Intent AlertIntent = new Intent(context, CellBroadcastAlertService.class);
 
         AlertIntent.putExtra(CellBroadcastAlertService.MUTE, mute);
-        AlertIntent.putExtra(CellBroadcastAlertService.EXTRA_MESSAGE, createCmasSmsMessage(serviceCategory, body, priority));
+        if (isCMAS) {
+            AlertIntent.putExtra(CellBroadcastAlertService.EXTRA_MESSAGE, createCmasSmsMessage(serviceCategory, body, priority));
+        }else{
+            AlertIntent.putExtra(CellBroadcastAlertService.EXTRA_MESSAGE, createETWSMessage(serviceCategory, body, priority));
+        }
 
         context.startService(AlertIntent);
     }

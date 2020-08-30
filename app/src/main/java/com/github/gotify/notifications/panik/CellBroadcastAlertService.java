@@ -102,7 +102,8 @@ public class CellBroadcastAlertService extends Service {
         TEST,
         AREA,
         INFO,
-        OTHER
+        OTHER,
+        CMAS_OTHER
     }
 
     private void showNewAlert(Intent intent) {
@@ -122,6 +123,28 @@ public class CellBroadcastAlertService extends Service {
 
         openEmergencyAlertNotification(cbm, mute);
 
+    }
+
+    static int getETWSMessageClass(int messageId) {
+        switch (messageId) {
+            case SmsCbConstants.MESSAGE_ID_ETWS_EARTHQUAKE_WARNING:
+                return SmsCbEtwsInfo.ETWS_WARNING_TYPE_EARTHQUAKE;
+
+            case SmsCbConstants.MESSAGE_ID_ETWS_EARTHQUAKE_AND_TSUNAMI_WARNING:
+                return SmsCbEtwsInfo.ETWS_WARNING_TYPE_EARTHQUAKE_AND_TSUNAMI;
+
+            case SmsCbConstants.MESSAGE_ID_ETWS_TSUNAMI_WARNING:
+                return SmsCbEtwsInfo.ETWS_WARNING_TYPE_TSUNAMI;
+
+            case SmsCbConstants.MESSAGE_ID_ETWS_OTHER_EMERGENCY_TYPE:
+                return SmsCbEtwsInfo.ETWS_WARNING_TYPE_OTHER_EMERGENCY;
+
+            case SmsCbConstants.MESSAGE_ID_ETWS_TEST_MESSAGE:
+                return SmsCbEtwsInfo.ETWS_WARNING_TYPE_TEST_MESSAGE;
+
+            default:
+                return SmsCbEtwsInfo.ETWS_WARNING_TYPE_UNKNOWN;
+        }
     }
 
     static int getCmasMessageClass(int messageId) {
@@ -222,7 +245,7 @@ public class CellBroadcastAlertService extends Service {
                 int warningType = message.getCmasWarningInfo().getMessageClass();
                 switch (warningType){
                     case SmsCbCmasInfo.CMAS_CLASS_Critical:
-                        alertType = AlertType.ETWS_DEFAULT;
+                        alertType = AlertType.CMAS_OTHER;
                         break;
                     default:
                         alertType = AlertType.DEFAULT;

@@ -299,6 +299,7 @@ public class WebSocketService extends Service {
             notificationManager.notify(Utils.longToInt(id), b.build());
         }else if (priority <= 99) {
             int messageType = 0;
+            boolean isCMAS = true;
             switch(title.toLowerCase()){
                 case "president":
                     messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_PRESIDENTIAL_LEVEL;
@@ -324,13 +325,33 @@ public class WebSocketService extends Service {
                 case "broadcast":
                     messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_OPERATOR_DEFINED_USE;
                     break;
+                case "tsunami":
+                    messageType = SmsCbConstants.MESSAGE_ID_ETWS_TSUNAMI_WARNING;
+                    isCMAS = false;
+                    break;
+                case "earthquake":
+                    messageType = SmsCbConstants.MESSAGE_ID_ETWS_EARTHQUAKE_WARNING;
+                    isCMAS = false;
+                    break;
+                case "et":
+                    messageType = SmsCbConstants.MESSAGE_ID_ETWS_EARTHQUAKE_AND_TSUNAMI_WARNING;
+                    isCMAS = false;
+                    break;
+                case "etws":
+                    messageType = SmsCbConstants.MESSAGE_ID_ETWS_OTHER_EMERGENCY_TYPE;
+                    isCMAS = false;
+                    break;
+                case "etwstest":
+                    messageType = SmsCbConstants.MESSAGE_ID_ETWS_TEST_MESSAGE;
+                    isCMAS = false;
+                    break;
                 default:
                     messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_Critical;
             }
-
-            CriticalNotify.AlertCritical(messageType, message,this, true);
+            CriticalNotify.AlertCritical(messageType, message,this, true, isCMAS);
         }else{
                 int messageType = 0;
+                boolean isCMAS = true;
                 switch(title.toLowerCase()){
                     case "president":
                         messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_PRESIDENTIAL_LEVEL;
@@ -356,13 +377,31 @@ public class WebSocketService extends Service {
                     case "broadcast":
                         messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_OPERATOR_DEFINED_USE;
                         break;
+                    case "tsunami":
+                        messageType = SmsCbConstants.MESSAGE_ID_ETWS_TSUNAMI_WARNING;
+                        isCMAS = false;
+                        break;
+                    case "earthquake":
+                        messageType = SmsCbConstants.MESSAGE_ID_ETWS_EARTHQUAKE_WARNING;
+                        isCMAS = false;
+                        break;
+                    case "et":
+                        messageType = SmsCbConstants.MESSAGE_ID_ETWS_EARTHQUAKE_AND_TSUNAMI_WARNING;
+                        isCMAS = false;
+                        break;
+                    case "etws":
+                        messageType = SmsCbConstants.MESSAGE_ID_ETWS_OTHER_EMERGENCY_TYPE;
+                        isCMAS = false;
+                        break;
+                    case "etwstest":
+                        messageType = SmsCbConstants.MESSAGE_ID_ETWS_TEST_MESSAGE;
+                        isCMAS = false;
+                        break;
                     default:
                         messageType = SmsCbConstants.MESSAGE_ID_CMAS_ALERT_Critical;
                 }
-
-                CriticalNotify.AlertCritical(messageType, message,this, false);
+                CriticalNotify.AlertCritical(messageType, message,this, false, isCMAS);
         }
-
     }
 
     @RequiresApi(Build.VERSION_CODES.N)

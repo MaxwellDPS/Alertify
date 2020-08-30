@@ -165,6 +165,9 @@ public class CellBroadcastAlertAudio extends Service  {
                 case OTHER:
                     setDataSourceFromResource(res, mMediaPlayer, R.raw.etws_other_disaster);
                     break;
+                case CMAS_OTHER:
+                    setDataSourceFromResource(res, mMediaPlayer, R.raw.other);
+                    break;
                 case ETWS_DEFAULT:
                     setDataSourceFromResource(res, mMediaPlayer, R.raw.etws_default);
                     break;
