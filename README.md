@@ -21,33 +21,42 @@ The title field i9s used to send the message type, Types are as follows:
 *Title is case insesitive*
 
 #### CMAS Alerts
-- President
-- Extreme
-- Severe
-- Amber
-- Public
-- RMT
-- Broadcast
-- StateTest
+
+| Title Value | Message Type                  |
+|-------------|-------------------------------|
+| President   | Presidental alert             |
+| Extreme     | Extreme alert                 |
+| Severe      | Severe alert                  |
+| Amber       | Amber / Child Abduction alert |
+| Public      | Public Safety alert           |
+| RMT         | Required Monthly Test         |
+| StateTest   | Local/State Test              |
+| Broadcast   | Broadcast Operator alert      |
+
 
 #### ETWS Alerts
-- Tsunami
-- Earthquake
-- ET *(ETWS Earthquake & Tsunami Message)*
-- ETWS*(ETWS Other Message)*
-- ETWSTest
+| Title Value | Message Type                     |
+|-------------|----------------------------------|
+| Tsunami     | ETWS Tsunami alert               |
+| Earthquake  | ETWS Earthquake alert            |
+| ET          | ETWS Earthquake & Tsunami  alert |
+| ETWS        | ETWS Other Message               |
+| ETWSTest    | ETWS Test Message                |
 
 
 #### Example Commands
 
-Example CMAS Presidental alert 
-> curl "https:/\/\<gotifyURL\>/message?token=_" -F "title=President" -F "message=This is the body" -F "priority=105"
+**Example CMAS Presidental alert **
 
-Example CMAS Extreme alert muted
-> curl "https:/\/\<gotifyURL\>/message?token=_" -F "title=Extreme" -F "message=This is the body" -F "priority=95"
+`curl "https:/\/\<gotifyURL\>/message?token=_" -F "title=President" -F "message=This is the body" -F "priority=105"`
 
-Example ETWS Tsunami alert 
-> curl "https:/\/\<gotifyURL\>/message?token=_" -F "title=Tsunami" -F "message=This is the body" -F "priority=105"
+**Example CMAS Extreme alert muted**
+
+`curl "https:/\/\<gotifyURL\>/message?token=_" -F "title=Extreme" -F "message=This is the body" -F "priority=95"`
+
+**Example ETWS Tsunami alert **
+
+`curl "https:/\/\<gotifyURL\>/message?token=_" -F "title=Tsunami" -F "message=This is the body" -F "priority=105"`
 
 #### Examples
 
