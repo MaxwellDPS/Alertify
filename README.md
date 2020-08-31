@@ -10,28 +10,35 @@ Gotify Android connects to [gotify/server](https://github.com/gotify/server) and
 ## Sening an spoofed alert
 
 ### Priority
-- \>89 - WEA dialog without Audio
-- \>99 - WEA dialog with Audio *Note it uses the Alarm channel and sets to full it will override Do not disturb*
+| Notification | Gotify Priority|
+|- |-|
+| - | 0 |
+| Icon in notification bar | 1 - 3 |
+| Icon in notification bar + Sound | 4 - 7 |
+| Icon in notification bar + Sound + Vibration | 8 - 10 |
+| Wireless Emergency Alert Dialog | 90 - 99 |
+| Wireless Emergency Alert Dialog + Sound + Overide volume and DND| 100 - 110 |
 
 ### Title options
 
-The title field i9s used to send the message type, Types are as follows:
+The title field is used to send the message type, Types are as follows:
 
 *Note, if title is absent or dosent match it defaults to "Critical Alert"*
 *Title is case insesitive*
 
 #### CMAS Alerts
 
-| Title Value | Message Type                  |
-|-------------|-------------------------------|
-| President   | Presidental alert             |
-| Extreme     | Extreme alert                 |
-| Severe      | Severe alert                  |
-| Amber       | Amber / Child Abduction alert |
-| Public      | Public Safety alert           |
-| RMT         | Required Monthly Test         |
-| StateTest   | Local/State Test              |
-| Broadcast   | Broadcast Operator alert      |
+| Type | Title Value | Message Type                  | Type | Title Value | Message Type                     |
+|------|-------------|-------------------------------|------|-------------|----------------------------------|
+| CMAS | President   | Presidental alert             | ETWS | Tsunami     | ETWS Tsunami alert               |
+| CMAS | Extreme     | Extreme alert                 | ETWS | Earthquake  | ETWS Earthquake alert            |
+| CMAS | Severe      | Severe alert                  | ETWS | ET          | ETWS Earthquake & Tsunami  alert |
+| CMAS | Amber       | Amber / Child Abduction alert | ETWS | ETWS        | ETWS Other Message               |
+| CMAS | Public      | Public Safety alert           | ETWS | ETWSTest    | ETWS Test Message                |
+| CMAS | RMT         | Required Monthly Test         |      |             |                                  |
+| CMAS | StateTest   | Local/State Test              |      |             |                                  |
+| CMAS | Broadcast   | Broadcast Operator alert      |      |             |                                  |
+| CMAS |\<OTHER\>    | Critical alert                |      |             |                                  |
 
 
 #### ETWS Alerts
@@ -44,9 +51,9 @@ The title field i9s used to send the message type, Types are as follows:
 | ETWSTest    | ETWS Test Message                |
 
 
-#### Example Commands
+### Example Commands
 
-**Example CMAS Presidental alert **
+**Example CMAS Presidental alert**
 
 `curl "https://<gotifyURL>/message?token=<APPTOKEN>" -F "title=President" -F "message=This is the body" -F "priority=105"`
 
@@ -54,11 +61,11 @@ The title field i9s used to send the message type, Types are as follows:
 
 `curl "https://<gotifyURL>/message?token=<APPTOKEN>"-F "title=Extreme" -F "message=This is the body" -F "priority=95"`
 
-**Example ETWS Tsunami alert **
+**Example ETWS Tsunami alert**
 
 `curl "https://<gotifyURL>/message?token=<APPTOKEN>"" -F "title=Tsunami" -F "message=This is the body" -F "priority=105"`
 
-#### Examples
+### Examples
 
 See Example Messages [Images](./Images.md)
 
