@@ -48,15 +48,15 @@ The title field i9s used to send the message type, Types are as follows:
 
 **Example CMAS Presidental alert **
 
-`curl "https:/\/\<gotifyURL\>/message?token=_" -F "title=President" -F "message=This is the body" -F "priority=105"`
+`curl "https://<gotifyURL>/message?token=<APPTOKEN>" -F "title=President" -F "message=This is the body" -F "priority=105"`
 
 **Example CMAS Extreme alert muted**
 
-`curl "https:/\/\<gotifyURL\>/message?token=_" -F "title=Extreme" -F "message=This is the body" -F "priority=95"`
+`curl "https://<gotifyURL>/message?token=<APPTOKEN>"-F "title=Extreme" -F "message=This is the body" -F "priority=95"`
 
 **Example ETWS Tsunami alert **
 
-`curl "https:/\/\<gotifyURL\>/message?token=_" -F "title=Tsunami" -F "message=This is the body" -F "priority=105"`
+`curl "https://<gotifyURL>/message?token=<APPTOKEN>"" -F "title=Tsunami" -F "message=This is the body" -F "priority=105"`
 
 #### Examples
 
