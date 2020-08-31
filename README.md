@@ -5,7 +5,7 @@
 ## Gotify Android 
 <img align="right" src="app.gif" width="250" />
 
-Gotify Android connects to [gotify/server](https://github.com/gotify/server) and shows push notifications on new messages.
+Alertify Android connects to [gotify/server](https://github.com/gotify/server) and shows push notifications on new messages.
 
 ## Sening an spoofed alert
 
