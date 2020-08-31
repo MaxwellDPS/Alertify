@@ -52,11 +52,7 @@ Example ETWS Tsunami alert
 #### Examples
 
 See Example Messages [Images](./Images.md)
-
-
-                      
-                     
-
+![Images](./img/image.png)
 
 ## Features
 
@@ -97,6 +93,8 @@ The foreground notification with content like `Listening to https://push.yourdom
 | Icon in notification bar | 1 - 3 |
 | Icon in notification bar + Sound | 4 - 7 |
 | Icon in notification bar + Sound + Vibration | 8 - 10 |
+| Wireless Emergency Alert Dialog | 90 - 99 |
+| Wireless Emergency Alert Dialog + Sound | 100 - 110 |
 
 ## Building
 
