@@ -121,10 +121,6 @@ $ ./gradlew build
 * Delete `client/settings.gradle` (client is a gradle sub project and must not have a settings.gradle)
 * Commit changes
 
-## Versioning
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the
-[tags on this repository](https://github.com/gotify/android/tags).
-
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
