@@ -49,48 +49,9 @@ Example CMAS Extreme alert muted
 Example ETWS Tsunami alert 
 > curl "https:/\/\<gotifyURL\>/message?token=_" -F "title=Tsunami" -F "message=This is the body" -F "priority=105"
 
-#### CMAS Examples
+#### Examples
 
-   ##### CMAS Presidental Message   
-   ![image.png](./image.png)      
-
-   ##### CMAS Extreme Message
-   ![image_1.png](./image_1.png)
-
-   ##### CMAS Severe Message
-   ![image_2.png](./image_2.png)
-
-   ##### CMAS Amber Alert / Child Abduction Message
-   ![image_3.png](./image_3.png)
-
-   ##### CMAS Public Safety Message
-   ![image_5.png](./image_5.png)
-
-   ##### CMAS Required Monthly Test Message
-   ![image_4.png](./image_4.png)
-
-   ##### CMAS State/Local Test Message 
-   ![image_6.png](./image_6.png)
-
-   ##### Emergency Broadcast Operator Message
-   ![image_7.png](./image_7.png)
-
-#### ETWS Examples
-
-   ##### ETWS Tsunami Message
-   ![image_10.png](./image_10.png)
-
-   ##### ETWS Earthquake Message
-   ![image_8.png](./image_8.png)
-     
-   ##### ETWS Earthquake & Tsunami Message
-   ![image_11.png](./image_11.png)
-
-   ##### ETWS Other Message
-   ![image_12.png](./image_12.png)
-
-   ##### ETWS Test Message
-   ![image_13.png](./image_13.png)
+See Example Messages [Images](./Images.md)
 
 
                       
