@@ -21,67 +21,92 @@ The title field i9s used to send the message type, Types are as follows:
 *Title is case insesitive*
 
 #### CMAS Alerts
-- President     
+- President
+- Extreme
+- Severe
+- Amber
+- Public
+- RMT
+- Broadcast
+- StateTest
+
+#### ETWS Alerts
+- Tsunami
+- Earthquake
+- ET *(ETWS Earthquake & Tsunami Message)*
+- ETWS*(ETWS Other Message)*
+- ETWSTest
+
+
+#### Example Commands
+
+Example CMAS Presidental alert 
+> curl "https:/\/\<gotifyURL\>/message?token=_" -F "title=President" -F "message=This is the body" -F "priority=105"
+
+Example CMAS Extreme alert muted
+> curl "https:/\/\<gotifyURL\>/message?token=_" -F "title=Extreme" -F "message=This is the body" -F "priority=95"
+
+Example ETWS Tsunami alert 
+> curl "https:/\/\<gotifyURL\>/message?token=_" -F "title=Tsunami" -F "message=This is the body" -F "priority=105"
+
+#### CMAS Examples
+
     > CMAS Presidental Message    
 
     ![image.png](./image.png)      
 
-- Extreme
+
     > CMAS Extreme Message
 
     ![image_1.png](./image_1.png)
 
-- Severe
+
     > CMAS Severe Message
 
     ![image_2.png](./image_2.png)
 
-- Amber
+
     > CMAS Amber Alert / Child Abduction Message
 
     ![image_3.png](./image_3.png)
 
-- Public
+
     > CMAS Public Safety Message
 
     ![image_5.png](./image_5.png)
 
-- RMT
     > CMAS Required Monthly Test Message
 
     ![image_4.png](./image_4.png)
 
-- StateTest
     > CMAS State/Local Test Message 
 
     ![image_6.png](./image_6.png)
 
-- Broadcast
     > Emergency Broadcast Operator Message
 
     ![image_7.png](./image_7.png)
 
-#### ETWS Alerts
-- Tsunami
+
+
+#### ETWS Examples
+
      > ETWS Tsunami Message
 
      ![image_10.png](./image_10.png)
-- Earthquake
+
      > ETWS Earthquake Message
 
      ![image_8.png](./image_8.png)
      
-- ET
      > ETWS Earthquake & Tsunami Message
 
      ![image_11.png](./image_11.png)
 
-- ETWS
     > ETWS Other Message
 
     ![image_12.png](./image_12.png)
 
-- ETWSTest
     > ETWS Test Message
 
     ![image_13.png](./image_13.png)
